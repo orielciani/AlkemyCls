@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CRUDComponent } from './crud.component';
 
 const routes: Routes = [
-  { path: ``, redirectTo: `pages`, pathMatch: `full` },
+  {
+    path: ``, component: CRUDComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class CrudPages { }
