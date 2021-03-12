@@ -1,2 +1,41 @@
-<p class="bg-primary text-white">home works!</p>
-asdasd
+<div class="container-fluid">
+  <div class="row">
+    <div class="col align-self-center">
+      <div class="card box-shadow">
+        <div class="card-body">
+          <div class="row">
+            <div class="col text-center">
+              <i class="bi bigSize bi-cash-stack"></i>
+            </div>
+            <div class="col-8">
+              <h1 class="card-title"> Balance actual </h1>
+              <p class="card-text"> 5000 - 2500 = {{ 5000 - 2500 }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-shadow bg-light">
+    <h2 class="text-primary">Ultimas transacciones</h2>
+    <table class="table bg-light">
+      <thead>
+        <tr class="bg-danger">
+          <th scope="col">Concepto</th>
+          <th scope="col">Monto</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of budget">
+          <td> {{item.concept}} </td>
+          <td> {{item.amount}} </td>
+          <td> {{item.date}} </td>
+          <td [ngClass]="{'bg-danger': item.type === 'expense'}"> {{item.type}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

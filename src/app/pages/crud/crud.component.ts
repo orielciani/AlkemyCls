@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from '@angular/router';
+import { BudgetService } from '../../services/budget.service';
 
 @Component({
   selector: 'app-crud',
@@ -7,62 +9,44 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   styleUrls: ['./crud.component.scss']
 })
 export class CRUDComponent implements OnInit {
-  form: FormGroup;
   operation = '';
   budget = [];
-  constructor() {
-    this.form = new FormGroup({
-      concept: new FormControl(''),
-      amount: new FormControl(''),
-      date: new FormControl(''),
-      type: new FormControl('')
-    });
+  budgetToUpdate;
+  id: string;
+  constructor(
+    public budgetservice: BudgetService,
+    public activatedroute: ActivatedRoute,
+    public router: Router
+  ) {
+
+
   }
 
   ngOnInit(): void {
-    this.budget = [{
-      'concept': 'Comida',
-      'amount': 100,
-      'date': '2021-03-03',
-      'type': 'expense'
-    },
-    {
-      'concept': 'Renta',
-      'amount': 5000,
-      'date': '2021-03-03',
-      'type': 'expense'
-    },
-    {
-      'concept': 'Sueldo',
-      'amount': 25000,
-      'date': '2021-03-03',
-      'type': 'income'
-    },
-  ]
-  console.log(this.budget)
+
   }
   operations = [
     {
       'title': 'Crear',
       'text': 'Crear nuevo registro de operación',
-      'icon': 'bi bi-plus-circle text-success',
-      'action': 'new'
+      'icon': 'bi bigSize bi-plus-circle text-success',
+      'route': 'create'
     },
     {
       'title': 'Ingresos',
       'text': 'Ver registros de ingresos',
-      'icon': 'bi bi-cash text-success',
-      'action': 'incomes'
+      'icon': 'bi bigSize bi-cash text-success',
+      'route': 'income'
     },
     {
       'title': 'Egresos',
       'text': 'Ver registros de egresos',
-      'icon': 'bi bi-cash text-danger',
-      'action': 'expenses'
+      'icon': 'bi bigSize bi-cash text-danger',
+      'route': 'expense'
     },
   ];
-  guardarCambios() {
-    console.log(this.form.value);
-    console.log(this.form.status);
+  navigate(route: string) {
+    this.router.navigate(['/pages/crud/' + route]);
   }
+
 }

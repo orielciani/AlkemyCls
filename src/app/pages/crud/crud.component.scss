@@ -1,8 +1,9 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 .col-md-4 {
   margin-top: 2vh;
+
 }
-.bi {
+.bigSize {
   font-size: 100px;
 }
 .card-title{
@@ -10,4 +11,7 @@
 }
 .bg-light {
   padding: 15px 15px 0 15px;
+}
+.card {
+  cursor: pointer;
 }
