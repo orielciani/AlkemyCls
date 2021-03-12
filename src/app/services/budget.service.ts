@@ -24,8 +24,8 @@ export class BudgetService {
     return this.http.post(url, budget);
   }
   putBudget(budget: any, id: string) {
-    let url = SERVER_URL + 'budget/adjust/' + budget._id;
-    return this.http.post(url, budget);
+    let url = SERVER_URL + 'budget/adjust/' + id;
+    return this.http.put(url, budget);
   }
   deleteBudget(id: any) {
     let url = SERVER_URL + 'budget/delete/' + id;

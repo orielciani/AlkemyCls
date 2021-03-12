@@ -27,8 +27,8 @@ export class CRUDComponent implements OnInit {
   }
   operations = [
     {
-      'title': 'Crear',
-      'text': 'Crear nuevo registro de operación',
+      'title': 'Agregar',
+      'text': 'Crear nuevo registro',
       'icon': 'bi bigSize bi-plus-circle text-success',
       'route': 'create'
     },
