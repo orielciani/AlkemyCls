@@ -12,8 +12,30 @@ export class HomeComponent implements OnInit {
     public budgetservice: BudgetService
   ) { }
   budget: any = [];
-  ngOnInit(): void {
-    this.budget = this.budgetservice.budget;
-  }
 
+  income: number = 0;
+  expense: number = 0;
+  balance: number;
+  ngOnInit(): void {
+    this.getRecents();
+    this.getBalance();
+  }
+  getBalance() {
+    this.budgetservice.getBudget('income').subscribe((res: any) => {
+      for (let i = 0; i < res.budget.length; i++) {
+          this.income += parseInt(res.budget[i].amount);
+      }
+      this.budgetservice.getBudget('expense').subscribe((res: any) => {
+        for (let i = 0; i < res.budget.length; i++) {
+          this.expense += parseInt(res.budget[i].amount);
+      }
+      this.balance = this.income - this.expense;
+      })
+    })
+  }
+  getRecents() {
+    this.budgetservice.getRecents().subscribe( (res: any) => {
+      this.budget = res.budgets;
+    } );
+  }
 }

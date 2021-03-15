@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 import { BudgetService } from 'src/app/services/budget.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-table',
@@ -15,10 +16,11 @@ export class TableComponent implements OnInit {
   selected: any = {'concept': '', 'amount': '', 'date': '', 'type': '', '._id': '1'};
   constructor(
     public budgetservice: BudgetService,
-    public activatedroute: ActivatedRoute
+    public activatedroute: ActivatedRoute,
+    public userservice: UserService
   ) {
     this.form = new FormGroup({
-      user: new FormControl('user'),
+      user: new FormControl(this.userservice.user.user),
       concept: new FormControl(''),
       amount: new FormControl(''),
       date: new FormControl(''),
@@ -33,12 +35,10 @@ export class TableComponent implements OnInit {
   getBudget() {
     this.budgetservice.getBudget(this.type).subscribe((res: any) => {
       this.budget = res.budget;
-      console.log(this.budget);
     })
   }
   deleteOperation(id: string) {
     this.budgetservice.deleteBudget(id).subscribe((res: any) => {
-      console.log(res);
       this.getBudget();
     })
   }
@@ -54,7 +54,6 @@ export class TableComponent implements OnInit {
   saveForm() {
     if ( this.form.status === "VALID" ) {
       this.budgetservice.putBudget(this.form.value, this.selected._id).subscribe((res: any) => {
-        console.log(res);
         this.selected = {'concept': '', 'amount': '', 'date': '', 'type': '', '._id': '1'};
         this.getBudget();
       } )

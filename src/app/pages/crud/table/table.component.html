@@ -1,7 +1,7 @@
 <div class="table-responsive">
   <table class="table bg-light">
     <thead>
-      <tr [ngClass]="{'bg-danger': type === 'expense', 'bg-success': type === 'income'}">
+      <tr *ngIf="this.type" [ngClass]="{'bg-danger': type === 'expense', 'bg-success': type === 'income'}">
         <th scope="col">Concepto</th>
         <th scope="col">Monto</th>
         <th scope="col">Fecha</th>
@@ -14,7 +14,8 @@
         <td> {{item.concept}} </td>
         <td> ${{item.amount}} </td>
         <td> {{item.date}} </td>
-        <td> {{item.type}} </td>
+        <td *ngIf="item.type === 'income'"> Ingreso </td>
+        <td *ngIf="item.type === 'expense'"> Egreso </td>
         <td>
           <button class="btn btn-primary" (click)="updateSelected(item, item._id)" ><i class="bi bi-pencil"></i>  Modificar</button>
           <button class="btn btn-danger"  (click)="deleteOperation(item._id)"><i class="bi bi-x-circle-fill"></i>  Eliminar</button>
@@ -40,7 +41,8 @@
             formControlName="date"
             max="2100-01-01" required>
         </td>
-        <td> {{item.type}} </td>
+        <td *ngIf="item.type === 'income'"> Ingreso </td>
+        <td *ngIf="item.type === 'expense'"> Egreso </td>
         <td>
           <button class="btn btn-success" type="submit" (click)="saveForm()"><i class="bi bi-check-circle">  Guardar</i></button>
           <button class="btn btn-danger" type="button" (click)="stopUpdate()" ><i class="bi bi-x-circle-fill">  Salir</i></button>

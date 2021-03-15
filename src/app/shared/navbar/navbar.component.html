@@ -3,7 +3,6 @@
   <button class="navbar-toggler p-0 border-0" (click)="openNavbar()" type="button">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="navbar-collapse offcanvas-collapse" [ngClass]="{'open' : main.open}">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" *ngFor="let item of menu">
@@ -12,10 +11,7 @@
           {{item.name}}
         </a>
       </li>
-
-
     </ul>
-    <a class="float-right btn btn-outline-primary">Iniciar sesion</a>
+    <a class="float-right btn btn-outline-primary" (click)="this.userservice.logout()" routerLink="/auth/login">Salir</a>
   </div>
-
 </nav>
