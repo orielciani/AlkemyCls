@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class TableComponent implements OnInit {
   form: FormGroup;
   budget = [];
+  class = [];
   type: string;
   selected: any = {'concept': '', 'amount': '', 'date': '', 'type': '', '._id': '1'};
   constructor(
@@ -24,6 +25,7 @@ export class TableComponent implements OnInit {
       concept: new FormControl(''),
       amount: new FormControl(''),
       date: new FormControl(''),
+      class: new FormControl(''),
       type: new FormControl('')
     });
    }
@@ -31,6 +33,7 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.type = this.activatedroute.snapshot.data.type;
     this.getBudget();
+    this.categories(this.type);
   }
   getBudget() {
     this.budgetservice.getBudget(this.type).subscribe((res: any) => {
@@ -48,6 +51,7 @@ export class TableComponent implements OnInit {
     this.form.controls['concept'].setValue(this.selected.concept);
     this.form.controls['amount'].setValue(this.selected.amount);
     this.form.controls['type'].setValue(this.selected.type);
+    this.form.controls['class'].setValue(this.selected.class);
     this.form.controls['date'].setValue(this.selected.date);
   }
 
@@ -56,6 +60,7 @@ export class TableComponent implements OnInit {
       this.budgetservice.putBudget(this.form.value, this.selected._id).subscribe((res: any) => {
         this.selected = {'concept': '', 'amount': '', 'date': '', 'type': '', '._id': '1'};
         this.getBudget();
+        this.categories(this.type);
       } )
     }
   }
@@ -63,5 +68,30 @@ export class TableComponent implements OnInit {
     this.selected = {'concept': '', 'amount': '', 'date': '', 'type': '', '._id': '1'};
     this.getBudget();
   }
-
+  categories(type: string) {
+    this.class = [];
+    this.budgetservice.getBudget(type).subscribe((res: any) => {
+      for (let i = 0; i < res.budget.length; i++) {
+        const item = res.budget[i];
+        if( item.type === type ) {
+          this.class.push(item.class);
+          this.class = this.class.filter((v, i, a) => a.indexOf(v) === i);
+        }
+      }
+    })
+  }
+  filterBy(category: string) {
+    if (category === 'Categoria') {
+      this.getBudget();
+    }
+    this.budget = [];
+    this.budgetservice.getBudget(this.type).subscribe((res: any) => {
+      for (let i = 0; i < res.budget.length; i++) {
+        const item = res.budget[i];
+        if( item.class === category ) {
+          this.budget.push(item);
+        }
+      }
+    })
+  }
 }

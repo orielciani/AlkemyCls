@@ -61,7 +61,9 @@ export class UserService {
     }
   }
 
-
+  isAuthenticated(): boolean {
+    if ( this.token.length < 5 ) return true;
+  }
 
 
 

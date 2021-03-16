@@ -20,6 +20,10 @@ export class BudgetService {
     let url = SERVER_URL + 'budget/user/' + type + '?token=' + this.userservice.token;
     return this.http.get(url);
   }
+  getClass() {
+    let url = SERVER_URL + 'budget/class?token=' + this.userservice.token;
+    return this.http.get(url);
+  }
   getRecents() {
     let url = SERVER_URL + 'budget?token=' + this.userservice.token;
     return this.http.get(url);

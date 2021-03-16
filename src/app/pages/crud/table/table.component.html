@@ -5,6 +5,10 @@
         <th scope="col">Concepto</th>
         <th scope="col">Monto</th>
         <th scope="col">Fecha</th>
+        <th scope="col"><select class="form-select" #select (change)="filterBy(select.value)">
+          <option>Categoria</option>
+          <option *ngFor="let item of class" [value]="item"> {{item}} </option>
+        </select></th>
         <th scope="col">Tipo</th>
         <th scope="col">Botones</th>
       </tr>
@@ -14,6 +18,7 @@
         <td> {{item.concept}} </td>
         <td> ${{item.amount}} </td>
         <td> {{item.date}} </td>
+        <td> {{item.class}} </td>
         <td *ngIf="item.type === 'income'"> Ingreso </td>
         <td *ngIf="item.type === 'expense'"> Egreso </td>
         <td>
@@ -40,6 +45,12 @@
             min="2020-01-01"
             formControlName="date"
             max="2100-01-01" required>
+        </td>
+        <td>
+          <input type="text"
+           class="form-control"
+           formControlName="class"
+            placeholder="Categoria" required>
         </td>
         <td *ngIf="item.type === 'income'"> Ingreso </td>
         <td *ngIf="item.type === 'expense'"> Egreso </td>
