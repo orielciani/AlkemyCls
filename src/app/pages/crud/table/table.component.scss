@@ -1,7 +1,64 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-td {
-  width: 16vw;
-}
-th {
-  width: 16vw;
-}
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+@include media-breakpoint-down(sm) {
+
+ }
+@include media-breakpoint-up(md) {
+  td {
+    padding: 0px;
+  }
+  .b {
+    width: 30%;
+  }
+ }
+@include media-breakpoint-up(lg) {
+  .con{
+    width: 25%;
+  }
+  .a {
+    width: 10%;
+  }
+  .d {
+    width: 15%;
+  }
+  .cat {
+    width: 15%;
+  }
+  .t {
+    width: 10%;
+  }
+  .b {
+    width: 25%;
+  }
+ }
+@include media-breakpoint-up(xl) {
+  .con{
+    width: 35%;
+  }
+  .a {
+    width: 10%;
+  }
+  .d {
+    width: 10%;
+  }
+  .cat {
+    width: 15%;
+  }
+  .t {
+    width: 10%;
+  }
+  .b {
+    width: 20%;
+  }
+  th {
+    font-size: 2rem;
+  }
+  td {
+    font-size: 1.2rem;
+  }
+  .text-left {
+    padding-left: 1vw;
+  }
+ }

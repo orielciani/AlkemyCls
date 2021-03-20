@@ -60,8 +60,8 @@
         </div>
         <div class="col-sm-10">
           <select class="form-select" #select formControlName="class" (change)="newClassFunction(select.value)">
-            <option *ngFor="let item of class" [value]="item"> {{item}} </option>
             <option>Nueva categoria</option>
+            <option *ngFor="let item of class" [value]="item"> {{item}} </option>
           </select>
         </div>
       </div>

@@ -30,7 +30,9 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
   }
   getClass(type: string) {
+    this.newClass = true;
     this.class = [];
+
     this.budgetservice.getClass().subscribe((res: any) => {
       for (let i = 0; i < res.class.length; i++) {
         const item = res.class[i];

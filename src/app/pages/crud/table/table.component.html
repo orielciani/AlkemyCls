@@ -1,22 +1,22 @@
 <div class="table-responsive">
-  <table class="table bg-light">
+  <table class="table bg-light text-center">
     <thead>
       <tr *ngIf="this.type" [ngClass]="{'bg-danger': type === 'expense', 'bg-success': type === 'income'}">
-        <th scope="col">Concepto</th>
-        <th scope="col">Monto</th>
-        <th scope="col">Fecha</th>
-        <th scope="col"><select class="form-select" #select (change)="filterBy(select.value)">
+        <th scope="col" class="con text-left">Concepto</th>
+        <th scope="col" class="a">Monto</th>
+        <th scope="col" class="d">Fecha</th>
+        <th scope="col" class="cat"><select class="form-select" #select (change)="filterBy(select.value)">
           <option>Categoria</option>
           <option *ngFor="let item of class" [value]="item"> {{item}} </option>
         </select></th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Botones</th>
+        <th scope="col" class="t">Tipo</th>
+        <th scope="col" class="b">Botones</th>
       </tr>
     </thead>
     <tbody *ngFor="let item of budget">
       <tr *ngIf="selected._id !== item._id">
-        <td> {{item.concept}} </td>
-        <td> ${{item.amount}} </td>
+        <td class="text-left"> {{item.concept}} </td>
+        <td> $ {{item.amount | number  }} </td>
         <td> {{item.date}} </td>
         <td> {{item.class}} </td>
         <td *ngIf="item.type === 'income'"> Ingreso </td>

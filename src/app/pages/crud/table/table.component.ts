@@ -38,11 +38,21 @@ export class TableComponent implements OnInit {
   getBudget() {
     this.budgetservice.getBudget(this.type).subscribe((res: any) => {
       this.budget = res.budget;
+    }, err => {
+      if ( err.status === 401 ) {
+        this.userservice.logout();
+
+      }
     })
   }
   deleteOperation(id: string) {
     this.budgetservice.deleteBudget(id).subscribe((res: any) => {
       this.getBudget();
+    }, err => {
+      if ( err.status === 401 ) {
+        this.userservice.logout();
+
+      }
     })
   }
   updateSelected(item: any, id: string) {
@@ -78,6 +88,11 @@ export class TableComponent implements OnInit {
           this.class = this.class.filter((v, i, a) => a.indexOf(v) === i);
         }
       }
+    }, err => {
+      if ( err.status === 401 ) {
+        this.userservice.logout();
+
+      }
     })
   }
   filterBy(category: string) {
@@ -91,6 +106,11 @@ export class TableComponent implements OnInit {
         if( item.class === category ) {
           this.budget.push(item);
         }
+      }
+    }, err => {
+      if ( err.status === 401 ) {
+        this.userservice.logout();
+
       }
     })
   }

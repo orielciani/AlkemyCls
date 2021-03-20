@@ -5,8 +5,8 @@
   </button>
   <div class="navbar-collapse offcanvas-collapse" [ngClass]="{'open' : main.open}">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" *ngFor="let item of menu">
-        <a class="nav-link" [routerLink]="'/pages/' + item.route" (click)="main.open = false">
+      <li class="nav-item" *ngFor="let item of menu">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="'/pages/' + item.route" (click)="main.open = false">
           <i [class]="item.icon"></i>
           {{item.name}}
         </a>

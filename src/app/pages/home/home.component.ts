@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetService } from 'src/app/services/budget.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,11 @@ import { BudgetService } from 'src/app/services/budget.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    public budgetservice: BudgetService
+    public budgetservice: BudgetService,
+    public userservice: UserService
   ) { }
   budget: any = [];
-
+  colorBalance = 'text-success';
   income: number = 0;
   expense: number = 0;
   balance: number;
@@ -30,12 +32,22 @@ export class HomeComponent implements OnInit {
           this.expense += parseInt(res.budget[i].amount);
       }
       this.balance = this.income - this.expense;
+      if (this.balance < 0 ) {
+        this.colorBalance = 'text-danger';
+      } else {
+        this.colorBalance = 'text-success';
+      }
       })
     })
   }
   getRecents() {
     this.budgetservice.getRecents().subscribe( (res: any) => {
       this.budget = res.budgets;
+    }, err => {
+      if ( err.status === 401 ) {
+        this.userservice.logout();
+
+      }
     } );
   }
 }

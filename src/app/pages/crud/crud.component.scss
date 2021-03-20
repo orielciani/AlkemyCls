@@ -1,21 +1,34 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
 .card-title{
   margin-top: 3vh;
-}
-.bg-light {
-  padding: 15px 15px 0 15px;
 }
 .card {
   cursor: pointer;
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
-.card-body {
-  padding: 0;
-}
-.card {
-  padding: 0;
-}
-.col {
-  max-width: 33vw;
-}
+
+@include media-breakpoint-down(sm) {
+  .card-body {
+    padding: 0;
+  }
+ }
+@include media-breakpoint-up(md) {
+  .card-body {
+    font-size: 2.5rem;
+    padding: 0;
+  }
+ }
+@include media-breakpoint-up(lg) {
+  .card-body {
+    font-size: 3.5rem;
+  }
+ }
+@include media-breakpoint-up(xl) {
+  .card-body {
+    font-size: 4rem;
+  }
+ }

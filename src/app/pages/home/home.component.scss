@@ -1,10 +1,62 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-.align-self-center {
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+.card-title{
+  margin-top: 1vh;
+}
+.card {
   margin-top: 2vh;
+  margin-bottom: 2vh;
+  padding: 0;
 }
-.bigSize {
-  font-size: 100px;
+.card-body {
+  padding: 0;
 }
-.box-shadow {
-  margin-top: 2vh;
-}
+
+@include media-breakpoint-down(sm) {
+  .card-body {
+    padding: 0;
+    font-size: 1.5rem;
+  }
+  .card-title {
+    font-size: 2rem;
+  }
+ }
+@include media-breakpoint-up(md) {
+  .card-body {
+    font-size: 4rem;
+  }
+  .card-title {
+    font-size: 5rem;
+  }
+ }
+@include media-breakpoint-up(lg) {
+  .card-body {
+    font-size: 4rem;
+  }
+  .card-title {
+    font-size: 5rem;
+  }
+ }
+@include media-breakpoint-up(xl) {
+  .card-body {
+    font-size: 2rem;
+  }
+  .card-title {
+    font-size: 2rem;
+  }
+  .text-primary {
+    font-size: 2rem;
+  }
+  td {
+    font-size: 1rem;
+  }
+  tr {
+    font-size: 1rem;
+  }
+  .table-responsive {
+    padding: 0 2vw 0 2vw;
+    margin-bottom: 2vh;
+  }
+ }

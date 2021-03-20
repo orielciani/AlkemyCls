@@ -1,16 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col" *ngFor="let item of operations">
-      <div class="card box-shadow" (click)="navigate(item.route)" >
-        <div class="card-body">
-          <div class="row">
-            <div class="col">
+    <div class="col-4" *ngFor="let item of operations">
+      <div class="card" (click)="navigate(item.route)" >
+        <div class="card-body text-center">
               <i [class]="item.icon"></i>  {{item.title}}
-            </div>
-            <div class="col">
-              <p class="card-text"> {{item.text}} </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
