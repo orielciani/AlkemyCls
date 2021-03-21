@@ -101,8 +101,8 @@ export class TableComponent implements OnInit {
     }
     this.budget = [];
     this.budgetservice.getBudget(this.type).subscribe((res: any) => {
-      for (let i = 0; i < res.budget.length; i++) {
-        const item = res.budget[i];
+      for (let i = 0; i < res.budgets.length; i++) {
+        const item = res.budgets[i];
         if( item.class === category ) {
           this.budget.push(item);
         }

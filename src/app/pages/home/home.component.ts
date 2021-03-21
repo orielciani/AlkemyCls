@@ -24,12 +24,13 @@ export class HomeComponent implements OnInit {
   }
   getBalance() {
     this.budgetservice.getBudget('income').subscribe((res: any) => {
-      for (let i = 0; i < res.budgets.length; i++) {
-          this.income += parseInt(res.budgets[i].amount);
+      console.log(res.budget)
+      for (let i = 0; i < res.budget.length; i++) {
+          this.income += parseInt(res.budget[i].amount);
       }
       this.budgetservice.getBudget('expense').subscribe((res: any) => {
-        for (let i = 0; i < res.budgets.length; i++) {
-          this.expense += parseInt(res.budgets[i].amount);
+        for (let i = 0; i < res.budget.length; i++) {
+          this.expense += parseInt(res.budget[i].amount);
       }
       this.balance = this.income - this.expense;
       if (this.balance < 0 ) {
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit {
   }
   getRecents() {
     this.budgetservice.getRecents().subscribe( (res: any) => {
-      this.budget = res.budgets;
+      this.budget = res.budget;
       console.log(res);
     }, err => {
       if ( err.status === 401 ) {
