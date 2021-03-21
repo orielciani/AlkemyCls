@@ -24,12 +24,12 @@ export class HomeComponent implements OnInit {
   }
   getBalance() {
     this.budgetservice.getBudget('income').subscribe((res: any) => {
-      for (let i = 0; i < res.budget.length; i++) {
-          this.income += parseInt(res.budget[i].amount);
+      for (let i = 0; i < res.budgets.length; i++) {
+          this.income += parseInt(res.budgets[i].amount);
       }
       this.budgetservice.getBudget('expense').subscribe((res: any) => {
-        for (let i = 0; i < res.budget.length; i++) {
-          this.expense += parseInt(res.budget[i].amount);
+        for (let i = 0; i < res.budgets.length; i++) {
+          this.expense += parseInt(res.budgets[i].amount);
       }
       this.balance = this.income - this.expense;
       if (this.balance < 0 ) {

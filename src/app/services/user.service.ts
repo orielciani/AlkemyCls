@@ -47,6 +47,7 @@ export class UserService {
     localStorage.setItem('token', token);
     localStorage.setItem('id', id);
     localStorage.setItem('user', JSON.stringify(user));
+
   }
   // Load Storage
   loadStorage() {
