@@ -34,6 +34,7 @@ export class TableComponent implements OnInit {
     this.type = this.activatedroute.snapshot.data.type;
     this.getBudget();
     this.categories(this.type);
+
   }
   getBudget() {
     this.budgetservice.getBudget(this.type).subscribe((res: any) => {
@@ -84,6 +85,7 @@ export class TableComponent implements OnInit {
       for (let i = 0; i < res.budget.length; i++) {
         const item = res.budget[i];
         if( item.type === type ) {
+          console.log(this.class)
           this.class.push(item.class);
           this.class = this.class.filter((v, i, a) => a.indexOf(v) === i);
         }
@@ -101,8 +103,8 @@ export class TableComponent implements OnInit {
     }
     this.budget = [];
     this.budgetservice.getBudget(this.type).subscribe((res: any) => {
-      for (let i = 0; i < res.budgets.length; i++) {
-        const item = res.budgets[i];
+      for (let i = 0; i < res.budget.length; i++) {
+        const item = res.budget[i];
         if( item.class === category ) {
           this.budget.push(item);
         }
