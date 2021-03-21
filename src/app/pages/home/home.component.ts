@@ -43,10 +43,10 @@ export class HomeComponent implements OnInit {
   getRecents() {
     this.budgetservice.getRecents().subscribe( (res: any) => {
       this.budget = res.budgets;
+      console.log(res);
     }, err => {
       if ( err.status === 401 ) {
         this.userservice.logout();
-
       }
     } );
   }

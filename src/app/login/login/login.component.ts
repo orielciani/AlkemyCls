@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.form = new FormGroup({
       email: new FormControl(''),
-      password: new FormControl(''),
+      pass: new FormControl(''),
     });
    }
 
@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
        console.log('Logeado con exito...');
      }, (err: any) => {
       console.log(err);
+      console.log(user);
     } )
   }
   saveForm() {

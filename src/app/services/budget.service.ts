@@ -17,7 +17,7 @@ export class BudgetService {
   }
 
   getBudget(type: string) {
-    let url = SERVER_URL + 'budget/user/' + type + '?token=' + this.userservice.token;
+    let url = SERVER_URL + 'budget?token=' + this.userservice.token;
     return this.http.get(url);
   }
   getClass() {

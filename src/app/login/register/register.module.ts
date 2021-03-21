@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterPages } from './register.pages';
 import { RegisterComponent } from './register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +10,8 @@ import { RegisterComponent } from './register.component';
   declarations: [RegisterComponent],
   imports: [
     CommonModule,
-    RegisterPages
+    RegisterPages,
+    ReactiveFormsModule
   ]
 })
 export class RegisterModule { }

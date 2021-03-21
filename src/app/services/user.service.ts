@@ -24,6 +24,12 @@ export class UserService {
       this.router.navigate(['/pages/home']);
     }))
   }
+  register(user: any) {
+    let url = SERVER_URL + 'user/create';
+    return this.http.post(url, user).pipe(map((res: any) => {
+      this.router.navigate(['/auth/login']);
+    }))
+  }
   // logout
   logout() {
     this.user = '';
